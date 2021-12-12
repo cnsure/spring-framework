@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'io.freefair.lombok' version "3.1.4"
+}
+
+group 'org.springframework'
+version '5.2.19.BUILD-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    compile(project(":spring-context")) // 添加spring的依赖
+    implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'ch.qos.logback:logback-classic:1.2.7'
+    //implementation 'org.apache.logging.log4j:log4j-to-slf4j:2.9.1' // log4j 桥接器 统一日志框架 sl4j
+}
+
+test {
+    useJUnitPlatform()
+}

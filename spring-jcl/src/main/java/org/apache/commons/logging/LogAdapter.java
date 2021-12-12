@@ -50,8 +50,8 @@ final class LogAdapter {
 	static {
 		if (isPresent(LOG4J_SPI)) {
 			if (isPresent(LOG4J_SLF4J_PROVIDER) && isPresent(SLF4J_SPI)) {
-				// log4j-to-slf4j bridge -> we'll rather go with the SLF4J SPI;
-				// however, we still prefer Log4j over the plain SLF4J API since
+				// log4j-to-slf4j bridge -> we'll rather go with the SLF4J SPI; 如果条件满足，我们会使用slf4j
+				// however, we still prefer Log4j over the plain SLF4J API since 然而，我们还是更喜欢log4j，因为slf4j没有位置感知支持
 				// the latter does not have location awareness support.
 				logApi = LogApi.SLF4J_LAL;
 			}
