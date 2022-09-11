@@ -42,7 +42,9 @@ import org.springframework.ui.context.ThemeSource;
  * @see #setBasenamePrefix
  * @see java.util.ResourceBundle
  * @see org.springframework.context.support.ResourceBundleMessageSource
+ * @deprecated as of 6.0, with no direct replacement
  */
+@Deprecated
 public class ResourceBundleThemeSource implements HierarchicalThemeSource, BeanClassLoaderAware {
 
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -87,7 +89,7 @@ public class ResourceBundleThemeSource implements HierarchicalThemeSource, BeanC
 	/**
 	 * Set the prefix that gets applied to the ResourceBundle basenames,
 	 * i.e. the theme names.
-	 * E.g.: basenamePrefix="test.", themeName="theme" -> basename="test.theme".
+	 * E.g.: basenamePrefix="test.", themeName="theme" &rarr; basename="test.theme".
 	 * <p>Note that ResourceBundle names are effectively classpath locations: As a
 	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
 	 * This means that "test.theme" is effectively equivalent to "test/theme",

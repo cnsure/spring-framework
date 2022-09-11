@@ -16,9 +16,9 @@
 
 package org.springframework.web.servlet.theme;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ThemeResolver;
@@ -31,7 +31,9 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * @author Juergen Hoeller
  * @since 20.06.2003
  * @see org.springframework.web.servlet.ThemeResolver
+ * @deprecated as of 6.0, with no concrete replacement
  */
+@Deprecated
 public class ThemeChangeInterceptor implements HandlerInterceptor {
 
 	/**

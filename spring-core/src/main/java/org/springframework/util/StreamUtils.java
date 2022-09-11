@@ -25,7 +25,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.charset.Charset;
 
@@ -34,7 +33,7 @@ import org.springframework.lang.Nullable;
 /**
  * Simple utility methods for dealing with streams. The copy methods of this class are
  * similar to those defined in {@link FileCopyUtils} except that all affected streams are
- * left open when done. All copy methods use a block size of 4096 bytes.
+ * left open when done. All copy methods use a block size of 8192 bytes.
  *
  * <p>Mainly for use within the framework, but also useful for application code.
  *
@@ -49,7 +48,7 @@ public abstract class StreamUtils {
 	/**
 	 * The default buffer size used when copying bytes.
 	 */
-	public static final int BUFFER_SIZE = 4096;
+	public static final int BUFFER_SIZE = 8192;
 
 	private static final byte[] EMPTY_CONTENT = new byte[0];
 
@@ -84,7 +83,7 @@ public abstract class StreamUtils {
 			return "";
 		}
 
-		StringBuilder out = new StringBuilder(BUFFER_SIZE);
+		StringBuilder out = new StringBuilder();
 		InputStreamReader reader = new InputStreamReader(in, charset);
 		char[] buffer = new char[BUFFER_SIZE];
 		int charsRead;
@@ -105,14 +104,8 @@ public abstract class StreamUtils {
 	public static String copyToString(ByteArrayOutputStream baos, Charset charset) {
 		Assert.notNull(baos, "No ByteArrayOutputStream specified");
 		Assert.notNull(charset, "No Charset specified");
-		try {
-			// Can be replaced with toString(Charset) call in Java 10+
-			return baos.toString(charset.name());
-		}
-		catch (UnsupportedEncodingException ex) {
-			// Should never happen
-			throw new IllegalArgumentException("Invalid charset name: " + charset, ex);
-		}
+
+		return baos.toString(charset);
 	}
 
 	/**

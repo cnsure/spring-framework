@@ -16,9 +16,9 @@
 
 package org.springframework.web.servlet.theme;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
@@ -39,7 +39,9 @@ import org.springframework.web.util.WebUtils;
  * @author Juergen Hoeller
  * @since 17.06.2003
  * @see #setThemeName
+ * @deprecated as of 6.0, with no direct replacement
  */
+@Deprecated
 public class CookieThemeResolver extends CookieGenerator implements ThemeResolver {
 
 	/**

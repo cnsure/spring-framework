@@ -50,12 +50,14 @@ import static org.assertj.core.api.Assertions.fail;
  * @author Rossen Stoyanchev
  * @author Eko Kurniawan Khannedy
  */
+@SuppressWarnings("deprecation")
 public class InterceptorRegistryTests {
 
 	private InterceptorRegistry registry;
 
 	private final HandlerInterceptor interceptor1 = new LocaleChangeInterceptor();
 
+	@Deprecated
 	private final HandlerInterceptor interceptor2 = new ThemeChangeInterceptor();
 
 	private TestWebRequestInterceptor webInterceptor1;
@@ -177,13 +179,11 @@ public class InterceptorRegistryTests {
 	}
 
 
-	@SuppressWarnings("deprecation")
 	private List<HandlerInterceptor> getInterceptorsForPath(String lookupPath) {
 		PathMatcher pathMatcher = new AntPathMatcher();
 		List<HandlerInterceptor> result = new ArrayList<>();
 		for (Object interceptor : this.registry.getInterceptors()) {
-			if (interceptor instanceof MappedInterceptor) {
-				MappedInterceptor mappedInterceptor = (MappedInterceptor) interceptor;
+			if (interceptor instanceof MappedInterceptor mappedInterceptor) {
 				if (mappedInterceptor.matches(lookupPath, pathMatcher)) {
 					result.add(mappedInterceptor.getInterceptor());
 				}
